@@ -10,7 +10,7 @@ public class BookTest {
     @Test
     public void constructorTest(){
         Book b = new Book("Huckleberry Finn");
-        assertEquals("Huckleberry Finn", b);
+        assertEquals("Huckleberry Finn", b.title);
     }
 
 }
