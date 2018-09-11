@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6590328a-13a0-403e-8f0a-180b580e1d2d" name="Default Changelist" comment="" />
+    <list default="true" id="6590328a-13a0-403e-8f0a-180b580e1d2d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Book.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/BookTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/biblioteca/com/twu/biblioteca/Library.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/biblioteca/com/twu/biblioteca/ExampleTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/twu/biblioteca/Library.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -71,22 +80,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="420" />
+          <entry key="java" value="2597" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="420" />
+          <entry key="JAVA" value="2597" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="1" />
+          <entry key="java" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="1" />
+          <entry key="JAVA" value="3" />
         </counts>
       </usages-collector>
     </session>
@@ -96,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="22" selection-end-column="7" />
+            <state relative-caret-position="105">
+              <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-end-line="8" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#189#190#0" expanded="true" />
@@ -109,15 +118,42 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Library.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+              <folding>
+                <element signature="e#767#768#0" expanded="true" />
+                <element signature="e#810#811#0" expanded="true" />
+                <element signature="e#859#860#0" expanded="true" />
+                <element signature="e#896#897#0" expanded="true" />
+                <marker date="1536709370756" expanded="true" signature="244:451" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Book.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+              <folding>
+                <element signature="e#156#157#0" expanded="true" />
+                <element signature="e#184#185#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/BookTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="15">
               <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
               <folding>
-                <element signature="e#233#234#0" expanded="true" />
-                <element signature="e#270#271#0" expanded="true" />
-                <marker date="1536557104179" expanded="true" signature="155:284" ph="..." />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -142,8 +178,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -151,6 +191,8 @@
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/BibliotecaApp.java" />
         <option value="$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java" />
         <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Library.java" />
+        <option value="$PROJECT_DIR$/src/com/twu/biblioteca/Book.java" />
+        <option value="$PROJECT_DIR$/test/com/twu/biblioteca/BookTest.java" />
       </list>
     </option>
   </component>
@@ -186,6 +228,17 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="biblioteca" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="biblioteca" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TWU_Biblioteca-michelleerica" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="biblioteca" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TWU_Biblioteca-michelleerica" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="biblioteca" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -194,12 +247,25 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536557151454" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1536709615814" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="configurable.group.build" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="com.twu.biblioteca" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="com.twu.biblioteca" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -213,7 +279,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ExampleTest.welcomeMessageTest">
+  <component name="RunManager" selected="JUnit.ExampleTest.listBookTest">
     <configuration name="ExampleTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
@@ -228,7 +294,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ExampleTest.checkWelcomeMessage" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ExampleTest.listBookTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="biblioteca" />
       <extension name="coverage">
         <pattern>
@@ -238,7 +304,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
       <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
-      <option name="METHOD_NAME" value="checkWelcomeMessage" />
+      <option name="METHOD_NAME" value="listBookTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ExampleTest.listBooksTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="biblioteca" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.twu.biblioteca.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.twu.biblioteca" />
+      <option name="MAIN_CLASS_NAME" value="com.twu.biblioteca.ExampleTest" />
+      <option name="METHOD_NAME" value="listBooksTest" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -289,15 +371,17 @@
       <item itemvalue="JUnit.Unnamed" />
       <item itemvalue="JUnit.ExampleTest" />
       <item itemvalue="JUnit.ExampleTest.test" />
-      <item itemvalue="JUnit.ExampleTest.checkWelcomeMessage" />
       <item itemvalue="JUnit.ExampleTest.welcomeMessageTest" />
+      <item itemvalue="JUnit.ExampleTest.listBooksTest" />
+      <item itemvalue="JUnit.ExampleTest.listBookTest" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ExampleTest.listBookTest" />
+        <item itemvalue="JUnit.ExampleTest" />
+        <item itemvalue="JUnit.ExampleTest.listBooksTest" />
         <item itemvalue="JUnit.ExampleTest.welcomeMessageTest" />
         <item itemvalue="JUnit.ExampleTest.test" />
-        <item itemvalue="JUnit.ExampleTest" />
-        <item itemvalue="JUnit.ExampleTest.checkWelcomeMessage" />
       </list>
     </recent_temporary>
   </component>
@@ -315,35 +399,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.09 at 21h 54m 20s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 22m 31s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.09 at 21h 54m 51s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 37m 38s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.09 at 21h 54m 57s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 38m 24s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.09 at 22h 17m 11s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 38m 57s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 14h 57m 54s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 39m 32s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 14h 59m 06s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 39m 57s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 15h 17m 08s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 40m 34s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 15h 21m 53s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 41m 54s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 15h 22m 26s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 42m 29s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ExampleTest_welcomeMessageTest - 2018.09.10 at 15h 25m 16s.xml">
-      <configuration name="ExampleTest.welcomeMessageTest" configurationId="JUnit" />
+    <history-entry file="ExampleTest_listBookTest - 2018.09.12 at 09h 42m 52s.xml">
+      <configuration name="ExampleTest.listBookTest" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
@@ -430,10 +514,35 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Book.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
+          <folding>
+            <element signature="e#156#157#0" expanded="true" />
+            <element signature="e#184#185#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Library.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" lean-forward="true" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#767#768#0" expanded="true" />
+            <element signature="e#810#811#0" expanded="true" />
+            <element signature="e#859#860#0" expanded="true" />
+            <element signature="e#896#897#0" expanded="true" />
+            <marker date="1536709370756" expanded="true" signature="244:451" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/ExampleTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" lean-forward="true" selection-start-line="18" selection-start-column="2" selection-end-line="22" selection-end-column="7" />
+        <state relative-caret-position="105">
+          <caret line="7" column="10" lean-forward="true" selection-start-line="7" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#189#190#0" expanded="true" />
@@ -444,14 +553,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/twu/biblioteca/Library.java">
+    <entry file="file://$PROJECT_DIR$/test/com/twu/biblioteca/BookTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
           <folding>
-            <element signature="e#233#234#0" expanded="true" />
-            <element signature="e#270#271#0" expanded="true" />
-            <marker date="1536557104179" expanded="true" signature="155:284" ph="..." />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
