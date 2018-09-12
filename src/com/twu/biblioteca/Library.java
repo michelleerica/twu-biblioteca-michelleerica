@@ -59,13 +59,20 @@ public class Library {
 
         optionSelected = userInput.next().substring(0, 1);
 
-        if (Objects.equals (optionSelected, "L")){
+        if (Objects.equals (optionSelected, "Q")){
+            printMessage("QUIT");
+
+        } else if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nBooks available");
             listBooks();
         } else {
-            printMessage("try again");
+            printMessage("Select a valid option");
             run();
         }
+    }
+
+    public static void selectOption(){
+
     }
 
     private static void listBooks(){
