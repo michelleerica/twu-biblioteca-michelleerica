@@ -31,7 +31,8 @@ public class Library {
     private static void printList(Book[] books) {
 
         for (Book book: books) {
-            printMessage(book.title);
+            String info = book.title + " | " + book.author + " | " + book.yearPublished;
+            printMessage(info);
         }
 
     }
