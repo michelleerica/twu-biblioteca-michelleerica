@@ -8,8 +8,8 @@ public class Library {
 
     private static String welcomeMessage = "Welcome to Biblioteca";
     private static Book[] books = new Book[]{
-            new Book("Huckleberry Finn"),
-            new Book("Little Women")
+            new Book("Huckleberry Finn", "Mark Twain", 1884),
+            new Book("Little Women", "Louise May Alcott", 1868)
     };
 
 

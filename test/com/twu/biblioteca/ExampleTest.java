@@ -19,11 +19,4 @@ public class ExampleTest {
         assertEquals(library.getWelcomeMessage(), "Welcome to Biblioteca");
     }
 
-    @Test
-    public void listBookTest(){
-        String books = "Huckleberry Finn";
-        assertEquals(library.getBookList(), books);
-    }
-
-
 }
