@@ -7,8 +7,6 @@ import static org.junit.Assert.assertEquals;
 public class ExampleTest {
     private Library library;
 
-//    Book book = new Book("Huckleberry Finn");
-
     @Test
     public void test() {
         assertEquals(1, 1);
@@ -16,7 +14,19 @@ public class ExampleTest {
 
     @Test
     public void welcomeMessageTest(){
-        assertEquals(library.getWelcomeMessage(), "Welcome to Biblioteca");
+        assertEquals("Welcome to Biblioteca", library.getWelcomeMessage());
+    }
+
+//    @Test
+//    public void optionList(){
+//        assertEquals("Menu options", library.getMenu());
+//    }
+
+    @Test
+    public void optionListTest(){
+        String message = "Menu options \n" +
+                "List Books";
+        assertEquals(message, library.getMenu());
     }
 
 }
