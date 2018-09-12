@@ -7,7 +7,11 @@ import java.util.Arrays;
 public class Library {
 
     private static String welcomeMessage = "Welcome to Biblioteca";
-    private static Book books = new Book("Huckleberry Finn");
+    private static Book[] books = new Book[]{
+            new Book("Huckleberry Finn"),
+            new Book("Little Women")
+    };
+
 
 
     public static void main(String[] args) {
@@ -16,7 +20,7 @@ public class Library {
         message = getWelcomeMessage();
         printMessage(message);
         printMessage("List of books");
-        getBookList();
+        printList(getBookList());
     }
 
 
@@ -24,15 +28,24 @@ public class Library {
         System.out.println(message);
     }
 
+    private static void printList(Book[] books) {
+
+        for (Book book: books) {
+            printMessage(book.title);
+        }
+
+    }
+
 
     public static String getWelcomeMessage() {
         return welcomeMessage;
     }
 
-    public static String getBookList(){
+    public static Book[] getBookList(){
 
-        return books.title;
+        return books;
     }
+
 
 
 
