@@ -1,9 +1,6 @@
 package com.twu.biblioteca;
 import java.util.ArrayList;
 
-
-// leave accessible for testing
-
 import java.util.Scanner;
 import java.util.Objects;
 
@@ -32,7 +29,6 @@ public class Library {
             " R: Return a book";
 
     public static void main(String[] args) {
-        System.out.println("SETTING UP");
         setUpLibrary();
         printMessage(getWelcomeMessage());
         run();
@@ -71,7 +67,6 @@ public class Library {
                 availableBooks.add(book);
             }
         }
-
         return availableBooks;
     }
 
@@ -79,21 +74,48 @@ public class Library {
         return menu;
     }
 
+    public static void listAllBooks(){
+        printList(getBookList());
+    }
+
+    public static void listAvailableBooks(){
+        System.out.println("LIST OF AVAILABLE BOOKS");
+        ArrayList<Book> updatedBookList = getAvailableBookList();
+
+        for (Book book: updatedBookList) {
+            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
+            printMessage(info);
+        }
+    }
+
+    public static void listNotAvailableBooks(){
+
+        for (Book book: books) {
+            if (!book.available) {
+                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
+                printMessage(info);
+            }
+        }
+    }
+
+
     public static void run() {
         Scanner userInput = new Scanner(System.in);
         printMessage(getMenu());
 
         printMessage("Select an option: ");
 
-        optionSelected = userInput.next().substring(0,1);
-        menuInteractivity();
+        optionSelected = userInput.nextLine();
+        if(optionSelected == "Q"){
+            printMessage("QUIT");
+        } else {
+            menuInteractivity();
+        }
     }
 
     public static void menuInteractivity(){
 
-        if (Objects.equals (optionSelected, "Q")){
-            printMessage("QUIT");
-        } else if (Objects.equals (optionSelected, "L")) {
+        if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
             listAllBooks();
             chooseBookToBorrow();
@@ -141,45 +163,21 @@ public class Library {
 
     }
 
-    public static void listAllBooks(){
-        printList(getBookList());
-    }
-
-    public static void listAvailableBooks(){
-        System.out.println("LIST OF AVAILABLE BOOKS");
-        ArrayList<Book> updatedBookList = getAvailableBookList();
-
-        for (Book book: updatedBookList) {
-                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
-                printMessage(info);
-            }
-        }
-
-    public static void listNotAvailableBooks(){
-
-        for (Book book: books) {
-            if (!book.available) {
-                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
-                printMessage(info);
-            }
-        }
-    }
 
     public static void checkout(String num){
         int id = 0;
         if(Integer.parseInt(num) > 0) {
             id = Integer.parseInt(num);
         }
-        printMessage("I'm getting "+ id);
+        printMessage("You are getting "+ id);
 
+        boolean found = false;
 
         for (Book book: books) {
 
-            System.out.println(id);
-
-
             if (book.id == id ){
                     if (book.available) {
+                        found = true;
                         book.changeStatus(book, "borrow");
 
                     } else {
@@ -187,7 +185,10 @@ public class Library {
                         chooseBookToBorrow();
                     }
 
-            } else printMessage("Select another option");
+            }
+        }
+        if(!found){
+            printMessage("Select another option");
         }
 
     }
@@ -197,12 +198,9 @@ public class Library {
         if(Integer.parseInt(num) > 0) {
             id = Integer.parseInt(num);
         }
-        printMessage("I'm returning "+ id);
-
+        printMessage("You are returning "+ id);
 
         for (Book book: books) {
-
-            System.out.println(id);
 
             if (book.id == id ){
                 if (!book.available) {

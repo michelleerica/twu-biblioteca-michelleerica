@@ -1,6 +1,4 @@
 package com.twu.biblioteca;
-// leave accessible for testing
-
 
 public class Book {
 
