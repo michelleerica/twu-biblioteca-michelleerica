@@ -5,26 +5,25 @@ import org.junit.Before;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
+
 
 public class ExampleTest {
-    private Library library;
+    private Library library = new Library();
 
 
     public static ArrayList<Book> books = new ArrayList<Book>();
     private Book one;
 
-    @Before
-    public void setUpLibrary(){
-        one = new Book(1,"Huckleberry Finn", "Mark Twain", 1884, true);
-        Book two = new Book(2,"Tom Sawyer", "Mark Twain", 1884, true);
-        Book three = new Book(3,"Little Women", "Louise May Alcott", 1868, false);
-        books.add(one);
-        books.add(two);
-        books.add(three);
-    }
+//    @Before
+//    public void setUpLibrary(){
+//        one = new Book(1,"Huckleberry Finn", "Mark Twain", 1884, true);
+//        Book two = new Book(2,"Tom Sawyer", "Mark Twain", 1884, true);
+//        Book three = new Book(3,"Little Women", "Louise May Alcott", 1868, false);
+//        books.add(one);
+//        books.add(two);
+//        books.add(three);
+//    }
 
     @Test
     public void test() {
@@ -45,13 +44,24 @@ public class ExampleTest {
         assertEquals(message, library.getMenu());
     }
 
-
     @Test
-    public void checkoutTest(){
-        String bookId = "1";
-        Library.checkout(bookId);
-        assertTrue(one.available);
+    public void listBooksTest(){
+//        String booksList = "1 | Huckleberry Finn | Mark Twain | 1884 | Available\n" +
+//                "2 | Tom Sawyer | Mark Twain | 1884 | Available\n" +
+//                "3 | Little Women | Louise May Alcott | 1868 | Not available";
+        System.out.println(library.books);
+//        assertTrue(library.books.contains("Huckleberry Finn"));
+
     }
 
+
+
+//    @Test
+//    public void checkoutTest(){
+//        Library.checkout("1");
+//        Library.getAvailableBookList();
+//        System.out.println(Library.availableBooks);
+//        assertTrue(one.available);
+//    }
 
 }

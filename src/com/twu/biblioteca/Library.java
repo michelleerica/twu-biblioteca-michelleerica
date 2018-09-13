@@ -12,8 +12,9 @@ public class Library {
 
     private static String welcomeMessage = "Welcome to Biblioteca";
     public static ArrayList<Book> books = new ArrayList<Book>();
-    static String optionSelected;
+    public static ArrayList<Book> availableBooks = new ArrayList<Book>();
 
+    static String optionSelected;
 
     private static void setUpLibrary(){
 
@@ -27,12 +28,13 @@ public class Library {
 
     private static String menu = "Menu options: \n" +
             " L: View All Books\n" +
-            " C: View available books for checkout";
+            " C: View available books for checkout\n" +
+            " R: Return a book";
 
     public static void main(String[] args) {
+        System.out.println("SETTING UP");
         setUpLibrary();
         printMessage(getWelcomeMessage());
-//        printMessage(getMenu());
         run();
     }
 
@@ -63,6 +65,16 @@ public class Library {
         return books;
     }
 
+    public static ArrayList<Book> getAvailableBookList(){
+        for (Book book: books) {
+            if (book.available ){
+                availableBooks.add(book);
+            }
+        }
+
+        return availableBooks;
+    }
+
     public static String getMenu() {
         return menu;
     }
@@ -84,20 +96,22 @@ public class Library {
         } else if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
             listAllBooks();
-            chooseBook();
-
-
+            chooseBookToBorrow();
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
             listAvailableBooks();
-            chooseBook();
+            chooseBookToBorrow();
+        } else if (Objects.equals (optionSelected, "R")) {
+            printMessage("you selected C \nReturn book");
+            listNotAvailableBooks();
+            chooseBookToReturn();
         } else {
             printMessage("Select a valid option");
         }
         run();
     }
 
-    public static void chooseBook(){
+    public static void chooseBookToBorrow(){
         Scanner bookSelector = new Scanner(System.in);
 
         printMessage("Which book would you like (provide # e.g. 1)?");
@@ -112,16 +126,39 @@ public class Library {
 
     }
 
+    public static void chooseBookToReturn(){
+        Scanner bookSelector = new Scanner(System.in);
+
+        printMessage("Which book would you like to return(provide # e.g. 1)?");
+
+        String bookID = bookSelector.nextLine();
+        printMessage("You wish to return book #" + bookID);
+
+        checkIn(bookID);
+
+        printMessage("Thank you for returning the book");
+        run();
+
+    }
+
     public static void listAllBooks(){
         printList(getBookList());
     }
 
     public static void listAvailableBooks(){
         System.out.println("LIST OF AVAILABLE BOOKS");
+        ArrayList<Book> updatedBookList = getAvailableBookList();
+
+        for (Book book: updatedBookList) {
+                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
+                printMessage(info);
+            }
+        }
+
+    public static void listNotAvailableBooks(){
 
         for (Book book: books) {
-            if (book.available ){
-
+            if (!book.available) {
                 String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
                 printMessage(info);
             }
@@ -129,23 +166,58 @@ public class Library {
     }
 
     public static void checkout(String num){
+        int id = 0;
+        if(Integer.parseInt(num) > 0) {
+            id = Integer.parseInt(num);
+        }
+        printMessage("I'm getting "+ id);
 
-        int id = Integer.parseInt(num);
 
         for (Book book: books) {
+
+            System.out.println(id);
+
+
             if (book.id == id ){
                     if (book.available) {
-                    book.checkout(book);
-                } else{
+                        book.changeStatus(book, "borrow");
+
+                    } else {
                         printMessage("The book is not available, choose book another book");
-                        chooseBook();
+                        chooseBookToBorrow();
                     }
 
+            } else printMessage("Select another option");
+        }
+
+    }
+
+    public static void checkIn(String num){
+        int id = 0;
+        if(Integer.parseInt(num) > 0) {
+            id = Integer.parseInt(num);
+        }
+        printMessage("I'm returning "+ id);
+
+
+        for (Book book: books) {
+
+            System.out.println(id);
+
+            if (book.id == id ){
+                if (!book.available) {
+                    book.changeStatus(book, "return");
+
+                } else{
+                    printMessage("This is not a valid book to return, please check your book ID");
+                    chooseBookToReturn();
+                }
+
+            } else {
+                printMessage("Select another option");
             }
         }
 
-//        book.checkout(book);
     }
-
 
 }

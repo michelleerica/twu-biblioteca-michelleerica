@@ -19,13 +19,15 @@ public class Book {
         available = status;
     }
 
-    public void checkout(Book book){
+    public void changeStatus(Book book, String status){
+        if(status == "borrow") {
+            available = false;
+        } else if(status == "return"){
+            available = true;
+        }
 
-        available = false;
 
     }
-
-
 
 
 }
