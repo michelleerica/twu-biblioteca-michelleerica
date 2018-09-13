@@ -43,7 +43,14 @@ public class Library {
     private static void printList(ArrayList<Book> books) {
 
         for (Book book: books) {
-            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished + " | " + book.available;
+            String status;
+            if(book.available){
+                status = "Available";
+            }else{
+                status = "Not available";
+            }
+
+            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished + " | " + status;
             printMessage(info);
         }
     }
@@ -77,8 +84,8 @@ public class Library {
         } else if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
             listAllBooks();
-            printMessage("To borrow a book, please type in 'C'");
-            run();
+            chooseBook();
+
 
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
@@ -86,9 +93,7 @@ public class Library {
             chooseBook();
         } else {
             printMessage("Select a valid option");
-//            run();
         }
-
         run();
     }
 
@@ -98,13 +103,12 @@ public class Library {
         printMessage("Which book would you like (provide # e.g. 1)?");
 
         String bookID = bookSelector.nextLine();
-        printMessage("You are checking out book #" + bookID);
+        printMessage("You wish to check out book #" + bookID);
 
         checkout(bookID);
 
         printMessage("Thank you! Enjoy the book");
         run();
-
 
     }
 
@@ -114,7 +118,6 @@ public class Library {
 
     public static void listAvailableBooks(){
         System.out.println("LIST OF AVAILABLE BOOKS");
-
 
         for (Book book: books) {
             if (book.available ){
@@ -131,7 +134,13 @@ public class Library {
 
         for (Book book: books) {
             if (book.id == id ){
-                book.checkout(book);
+                    if (book.available) {
+                    book.checkout(book);
+                } else{
+                        printMessage("The book is not available, choose book another book");
+                        chooseBook();
+                    }
+
             }
         }
 
