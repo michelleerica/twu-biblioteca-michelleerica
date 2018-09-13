@@ -4,14 +4,15 @@ package com.twu.biblioteca;
 
 public class Book {
 
-    public String name;
+    int id;
     String title;
     String author;
     Integer yearPublished;
     Boolean available;
 
 
-    public Book(String bookName, String authorName, int year, boolean status) {
+    public Book(int num, String bookName, String authorName, int year, boolean status) {
+        id = num;
         title = bookName;
         author = authorName;
         yearPublished = year;

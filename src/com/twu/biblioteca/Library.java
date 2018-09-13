@@ -12,11 +12,14 @@ public class Library {
 
     private static String welcomeMessage = "Welcome to Biblioteca";
     public static ArrayList<Book> books = new ArrayList<Book>();
+    static String optionSelected;
+
 
     private static void setUpLibrary(){
-        Book one = new Book("Huckleberry Finn", "Mark Twain", 1884, true);
-        Book two = new Book("Tom Sawyer", "Mark Twain", 1884, true);
-        Book three = new Book("Little Women", "Louise May Alcott", 1868, false);
+
+        Book one = new Book(1,"Huckleberry Finn", "Mark Twain", 1884, true);
+        Book two = new Book(2,"Tom Sawyer", "Mark Twain", 1884, true);
+        Book three = new Book(3,"Little Women", "Louise May Alcott", 1868, false);
         books.add(one);
         books.add(two);
         books.add(three);
@@ -29,7 +32,7 @@ public class Library {
     public static void main(String[] args) {
         setUpLibrary();
         printMessage(getWelcomeMessage());
-        printMessage(getMenu());
+//        printMessage(getMenu());
         run();
     }
 
@@ -40,7 +43,7 @@ public class Library {
     private static void printList(ArrayList<Book> books) {
 
         for (Book book: books) {
-            String info = book.title + " | " + book.author + " | " + book.yearPublished + " | " + book.available;
+            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished + " | " + book.available;
             printMessage(info);
         }
     }
@@ -59,26 +62,50 @@ public class Library {
 
     public static void run() {
         Scanner userInput = new Scanner(System.in);
+        printMessage(getMenu());
 
         printMessage("Select an option: ");
 
-        String optionSelected;
+        optionSelected = userInput.next().substring(0,1);
+        menuInteractivity();
+    }
 
-        optionSelected = userInput.next().substring(0, 1);
+    public static void menuInteractivity(){
 
         if (Objects.equals (optionSelected, "Q")){
             printMessage("QUIT");
-
         } else if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
             listAllBooks();
+            printMessage("To borrow a book, please type in 'C'");
+            run();
+
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
             listAvailableBooks();
+            chooseBook();
         } else {
             printMessage("Select a valid option");
-            run();
+//            run();
         }
+
+        run();
+    }
+
+    public static void chooseBook(){
+        Scanner bookSelector = new Scanner(System.in);
+
+        printMessage("Which book would you like (provide # e.g. 1)?");
+
+        String bookID = bookSelector.nextLine();
+        printMessage("You are checking out book #" + bookID);
+
+        checkout(bookID);
+
+        printMessage("Thank you! Enjoy the book");
+        run();
+
+
     }
 
     public static void listAllBooks(){
@@ -90,16 +117,25 @@ public class Library {
 
 
         for (Book book: books) {
-            if (book.available == true){
+            if (book.available ){
 
-                String info = book.title + " | " + book.author + " | " + book.yearPublished;
+                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
                 printMessage(info);
             }
         }
     }
 
-    public static void checkout(Book book){
-        book.checkout(book);
+    public static void checkout(String num){
+
+        int id = Integer.parseInt(num);
+
+        for (Book book: books) {
+            if (book.id == id ){
+                book.checkout(book);
+            }
+        }
+
+//        book.checkout(book);
     }
 
 

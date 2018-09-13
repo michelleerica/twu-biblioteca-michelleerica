@@ -6,6 +6,7 @@ import org.junit.Before;
 import java.util.ArrayList;
 import java.util.Arrays;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.assertFalse;
 
 public class ExampleTest {
@@ -17,9 +18,9 @@ public class ExampleTest {
 
     @Before
     public void setUpLibrary(){
-        one = new Book("Huckleberry Finn", "Mark Twain", 1884, true);
-        Book two = new Book("Tom Sawyer", "Mark Twain", 1884, true);
-        Book three = new Book("Little Women", "Louise May Alcott", 1868, false);
+        one = new Book(1,"Huckleberry Finn", "Mark Twain", 1884, true);
+        Book two = new Book(2,"Tom Sawyer", "Mark Twain", 1884, true);
+        Book three = new Book(3,"Little Women", "Louise May Alcott", 1868, false);
         books.add(one);
         books.add(two);
         books.add(three);
@@ -47,8 +48,9 @@ public class ExampleTest {
 
     @Test
     public void checkoutTest(){
-        library.checkout(one);
-        assertFalse(one.available);
+        String bookId = "1";
+        Library.checkout(bookId);
+        assertTrue(one.available);
     }
 
 
