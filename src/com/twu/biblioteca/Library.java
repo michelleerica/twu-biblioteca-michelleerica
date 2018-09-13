@@ -1,5 +1,5 @@
 package com.twu.biblioteca;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 
 // leave accessible for testing
@@ -11,18 +11,23 @@ import java.util.Objects;
 public class Library {
 
     private static String welcomeMessage = "Welcome to Biblioteca";
-    private static Book[] books = new Book[]{
-            new Book("Huckleberry Finn", "Mark Twain", 1884,  true),
-            new Book("Tom Sawyer", "Mark Twain", 1884, true),
-            new Book("Little Women", "Louise May Alcott", 1868, false)
-    };
+    public static ArrayList<Book> books = new ArrayList<Book>();
+
+    private static void setUpLibrary(){
+        Book one = new Book("Huckleberry Finn", "Mark Twain", 1884, true);
+        Book two = new Book("Tom Sawyer", "Mark Twain", 1884, true);
+        Book three = new Book("Little Women", "Louise May Alcott", 1868, false);
+        books.add(one);
+        books.add(two);
+        books.add(three);
+    }
 
     private static String menu = "Menu options: \n" +
             " L: View All Books\n" +
             " C: View available books for checkout";
 
     public static void main(String[] args) {
-
+        setUpLibrary();
         printMessage(getWelcomeMessage());
         printMessage(getMenu());
         run();
@@ -32,7 +37,7 @@ public class Library {
         System.out.println(message);
     }
 
-    private static void printList(Book[] books) {
+    private static void printList(ArrayList<Book> books) {
 
         for (Book book: books) {
             String info = book.title + " | " + book.author + " | " + book.yearPublished + " | " + book.available;
@@ -44,7 +49,7 @@ public class Library {
         return welcomeMessage;
     }
 
-    public static Book[] getBookList(){
+    public static ArrayList<Book> getBookList(){
         return books;
     }
 
@@ -90,18 +95,12 @@ public class Library {
                 String info = book.title + " | " + book.author + " | " + book.yearPublished;
                 printMessage(info);
             }
-
         }
-
     }
 
     public static void checkout(Book book){
-
         book.checkout(book);
-        System.out.println("CHECKOUT");
-
     }
-
 
 
 }
