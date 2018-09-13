@@ -179,12 +179,10 @@ public class Library {
                     if (book.available) {
                         found = true;
                         book.changeStatus(book, "borrow");
-
                     } else {
-                        printMessage("The book is not available, choose book another book");
+                        printMessage("The book is not available, choose another book");
                         chooseBookToBorrow();
                     }
-
             }
         }
         if(!found){
@@ -210,7 +208,6 @@ public class Library {
                     printMessage("This is not a valid book to return, please check your book ID");
                     chooseBookToReturn();
                 }
-
             } else {
                 printMessage("Select another option");
             }

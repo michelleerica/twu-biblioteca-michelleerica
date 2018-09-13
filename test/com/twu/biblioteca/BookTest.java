@@ -18,7 +18,14 @@ public class BookTest {
 
     @Test
     public void checkOutTest(){
-        assertFalse(bookUnavailable.available);
+        book.changeStatus(book,"borrow");
+        assertFalse(book.available);
+    }
+
+    @Test
+    public void checkInTest(){
+        bookUnavailable.changeStatus(book,"return");
+        assertTrue(bookUnavailable.available);
     }
 
 
