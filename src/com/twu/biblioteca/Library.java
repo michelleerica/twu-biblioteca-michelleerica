@@ -7,11 +7,23 @@ import java.util.Objects;
 
 public class Library {
 
+    static ArrayList<Book> books = new ArrayList<Book>();
+    static ArrayList<Book> availableBooks = new ArrayList<Book>();
+
     private static String welcomeMessage = "Welcome to Biblioteca";
-    public static ArrayList<Book> books = new ArrayList<Book>();
-    public static ArrayList<Book> availableBooks = new ArrayList<Book>();
+
+    private static String menu = "Menu options: \n" +
+            " L: View All Books\n" +
+            " C: View available books for checkout\n" +
+            " R: Return a book";
 
     static String optionSelected;
+
+    public static void main(String[] args) {
+        setUpLibrary();
+        printMessage(getWelcomeMessage());
+        run();
+    }
 
     private static void setUpLibrary(){
 
@@ -21,17 +33,6 @@ public class Library {
         books.add(one);
         books.add(two);
         books.add(three);
-    }
-
-    private static String menu = "Menu options: \n" +
-            " L: View All Books\n" +
-            " C: View available books for checkout\n" +
-            " R: Return a book";
-
-    public static void main(String[] args) {
-        setUpLibrary();
-        printMessage(getWelcomeMessage());
-        run();
     }
 
     private static void printMessage(String message) {
@@ -124,7 +125,7 @@ public class Library {
             listAvailableBooks();
             chooseBookToBorrow();
         } else if (Objects.equals (optionSelected, "R")) {
-            printMessage("you selected C \nReturn book");
+            printMessage("you selected R \nReturn book");
             listNotAvailableBooks();
             chooseBookToReturn();
         } else {
