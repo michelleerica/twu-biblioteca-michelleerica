@@ -22,10 +22,20 @@ public abstract class Library {
 
     public static void main(String[] args) {
         printMessage(getWelcomeMessage());
+        setUpLibrary();
         run();
     }
 
-    public abstract void setUpLibrary();
+
+    public static void setUpLibrary(){
+
+        Book one = new Book(1,"Huckleberry Finn",  1884, true, "Mark Twain");
+        Book two = new Book(2,"Tom Sawyer",  1884, true, "Mark Twain");
+        Book three = new Book(3,"Little Women", 1868, false,"Louise May Alcott");
+        resources.add(one);
+        resources.add(two);
+        resources.add(three);
+    }
 
     public static void printMessage(String message) {
         System.out.println(message);
@@ -91,7 +101,6 @@ public abstract class Library {
         }
     }
 
-
     public static void run() {
         Scanner userInput = new Scanner(System.in);
         printMessage(getMenu());
@@ -111,57 +120,53 @@ public abstract class Library {
         if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
             listAllResources();
-            chooseResourceToBorrow();
+            chooseResourceToAction("checkout");
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
             listAvailableResources();
-            chooseResourceToBorrow();
+            chooseResourceToAction("checkout");
         } else if (Objects.equals (optionSelected, "R")) {
             printMessage("you selected R \nReturn book");
             listNotAvailableResources();
-            chooseResourceToReturn();
+            chooseResourceToAction("checkin");
         } else {
             printMessage("Select a valid option");
         }
         run();
     }
 
-    public static void chooseResourceToBorrow(){
+    public static void chooseResourceToAction(String action){
         Scanner resourceSelector = new Scanner(System.in);
 
-        printMessage("Which book would you like (provide # e.g. 1)?");
+        printMessage("Which book would you like to " + action + " (provide # e.g. 1)?");
 
         String resourceID = resourceSelector.nextLine();
+
+        int id = 0;
+        if(Integer.parseInt(resourceID) > 0) {
+            id = Integer.parseInt(resourceID);
+        }else{
+            menuInteractivity();
+        }
+
         printMessage("You wish to check out book #" + resourceID);
 
-        checkout(resourceID);
+        if(action == "checkout") {
+            printMessage("You wish to check out book #" + resourceID);
+            checkout(id);
+            printMessage("Thank you! Enjoy the book");
 
-        printMessage("Thank you! Enjoy the book");
-        run();
-
-    }
-
-    public static void chooseResourceToReturn(){
-        Scanner resourceSelector = new Scanner(System.in);
-
-        printMessage("Which book would you like to return(provide # e.g. 1)?");
-
-        String resourceID = resourceSelector.nextLine();
-        printMessage("You wish to return book #" + resourceID);
-
-        checkIn(resourceID);
-
-        printMessage("Thank you for returning the book");
-        run();
-
-    }
-
-
-    public static void checkout(String num){
-        int id = 0;
-        if(Integer.parseInt(num) > 0) {
-            id = Integer.parseInt(num);
+        } else if(action == "checkin"){
+            printMessage("You wish to return book #" + resourceID);
+            checkIn(id);
+            printMessage("Thank you for returning the book");
         }
+        run();
+
+    }
+
+    public static void checkout(int id){
+
         printMessage("You are getting "+ id);
 
         boolean found = false;
@@ -174,7 +179,7 @@ public abstract class Library {
                         resource.changeStatus(resource, "borrow");
                     } else {
                         printMessage("The book is not available, choose another book");
-                        chooseResourceToBorrow();
+                        chooseResourceToAction("checkout");
                     }
             }
         }
@@ -184,11 +189,8 @@ public abstract class Library {
 
     }
 
-    public static void checkIn(String num){
-        int id = 0;
-        if(Integer.parseInt(num) > 0) {
-            id = Integer.parseInt(num);
-        }
+    public static void checkIn(int id){
+
         printMessage("You are returning "+ id);
 
         for (Resource resource: resources) {
@@ -199,7 +201,7 @@ public abstract class Library {
 
                 } else{
                     printMessage("This is not a valid book to return, please check your book ID");
-                    chooseResourceToReturn();
+                    chooseResourceToAction("checkin");
                 }
             } else {
                 printMessage("Select another option");
