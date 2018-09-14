@@ -13,4 +13,15 @@ public class Resource {
         yearReleased = year;
         available = status;
     }
+
+
+    public void changeStatus(Resource resource, String status){
+        if(status == "borrow") {
+            available = false;
+        } else if(status == "return"){
+            available = true;
+        }
+
+
+    }
 }

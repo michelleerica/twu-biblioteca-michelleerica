@@ -11,7 +11,7 @@ public class LibraryTest {
 
     @Before
     public void setUp() {
-        library = new Library();
+        library = new BookSection();
     }
 
     @Test
@@ -22,9 +22,9 @@ public class LibraryTest {
     @Test
     public void optionListTest(){
         String message = "Menu options: \n" +
-                " L: View All Books\n" +
-                " C: View available books for checkout\n" +
-                " R: Return a book";
+                " L: View All \n" +
+                " C: View available for checkout\n" +
+                " R: Return";
 
         assertEquals(message, library.getMenu());
     }

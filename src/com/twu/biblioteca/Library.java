@@ -5,51 +5,43 @@ import java.util.Scanner;
 import java.util.Objects;
 
 
-public class Library {
+public abstract class Library {
 
-    static ArrayList<Book> books = new ArrayList<Book>();
-    static ArrayList<Book> availableBooks = new ArrayList<Book>();
+    static ArrayList<Resource> resources = new ArrayList<Resource>();
+    static ArrayList<Resource> availableResources = new ArrayList<Resource>();
 
     private static String welcomeMessage = "Welcome to Biblioteca";
 
     private static String menu = "Menu options: \n" +
-            " L: View All Books\n" +
-            " C: View available books for checkout\n" +
-            " R: Return a book";
+            " L: View All \n" +
+            " C: View available for checkout\n" +
+            " R: Return";
 
     static String optionSelected;
+    private String[] args;
 
     public static void main(String[] args) {
-        setUpLibrary();
         printMessage(getWelcomeMessage());
         run();
     }
 
-    private static void setUpLibrary(){
+    public abstract void setUpLibrary();
 
-        Book one = new Book(1,"Huckleberry Finn",  1884, true, "Mark Twain");
-        Book two = new Book(2,"Tom Sawyer",  1884, true, "Mark Twain");
-        Book three = new Book(3,"Little Women", 1868, false,"Louise May Alcott");
-        books.add(one);
-        books.add(two);
-        books.add(three);
-    }
-
-    private static void printMessage(String message) {
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 
-    private static void printList(ArrayList<Book> books) {
+    public static void printList(ArrayList<Resource> resources) {
 
-        for (Book book: books) {
+        for (Resource resource: resources) {
             String status;
-            if(book.available){
+            if(resource.available){
                 status = "Available";
             }else{
                 status = "Not available";
             }
 
-            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased + " | " + status;
+            String info = resource.id + " | " + resource.title + " | " + resource.yearReleased + " | " + status;
             printMessage(info);
         }
     }
@@ -58,42 +50,42 @@ public class Library {
         return welcomeMessage;
     }
 
-    public static ArrayList<Book> getBookList(){
-        return books;
+    public static ArrayList<Resource> getResourceList(){
+        return resources;
     }
 
-    public static ArrayList<Book> getAvailableBookList(){
-        for (Book book: books) {
-            if (book.available ){
-                availableBooks.add(book);
+    public static ArrayList<Resource> getAvailableResourceList(){
+        for (Resource resource: resources) {
+            if (resource.available ){
+                availableResources.add(resource);
             }
         }
-        return availableBooks;
+        return availableResources;
     }
 
     public static String getMenu() {
         return menu;
     }
 
-    public static void listAllBooks(){
-        printList(getBookList());
+    public static void listAllResources(){
+        printList(getResourceList());
     }
 
-    public static void listAvailableBooks(){
+    public static void listAvailableResources(){
         System.out.println("LIST OF AVAILABLE BOOKS");
-        ArrayList<Book> updatedBookList = getAvailableBookList();
+        ArrayList<Resource> updatedResourceList = getAvailableResourceList();
 
-        for (Book book: updatedBookList) {
-            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased;
+        for (Resource resource: updatedResourceList) {
+            String info = resource.id + " | " + resource.title + " | " + resource.yearReleased;
             printMessage(info);
         }
     }
 
-    public static void listNotAvailableBooks(){
+    public static void listNotAvailableResources(){
 
-        for (Book book: books) {
-            if (!book.available) {
-                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased;
+        for (Resource resource: resources) {
+            if (!resource.available) {
+                String info = resource.id + " | " + resource.title + " | " + resource.yearReleased;
                 printMessage(info);
             }
         }
@@ -118,46 +110,46 @@ public class Library {
 
         if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
-            listAllBooks();
-            chooseBookToBorrow();
+            listAllResources();
+            chooseResourceToBorrow();
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
-            listAvailableBooks();
-            chooseBookToBorrow();
+            listAvailableResources();
+            chooseResourceToBorrow();
         } else if (Objects.equals (optionSelected, "R")) {
             printMessage("you selected R \nReturn book");
-            listNotAvailableBooks();
-            chooseBookToReturn();
+            listNotAvailableResources();
+            chooseResourceToReturn();
         } else {
             printMessage("Select a valid option");
         }
         run();
     }
 
-    public static void chooseBookToBorrow(){
-        Scanner bookSelector = new Scanner(System.in);
+    public static void chooseResourceToBorrow(){
+        Scanner resourceSelector = new Scanner(System.in);
 
         printMessage("Which book would you like (provide # e.g. 1)?");
 
-        String bookID = bookSelector.nextLine();
-        printMessage("You wish to check out book #" + bookID);
+        String resourceID = resourceSelector.nextLine();
+        printMessage("You wish to check out book #" + resourceID);
 
-        checkout(bookID);
+        checkout(resourceID);
 
         printMessage("Thank you! Enjoy the book");
         run();
 
     }
 
-    public static void chooseBookToReturn(){
-        Scanner bookSelector = new Scanner(System.in);
+    public static void chooseResourceToReturn(){
+        Scanner resourceSelector = new Scanner(System.in);
 
         printMessage("Which book would you like to return(provide # e.g. 1)?");
 
-        String bookID = bookSelector.nextLine();
-        printMessage("You wish to return book #" + bookID);
+        String resourceID = resourceSelector.nextLine();
+        printMessage("You wish to return book #" + resourceID);
 
-        checkIn(bookID);
+        checkIn(resourceID);
 
         printMessage("Thank you for returning the book");
         run();
@@ -174,15 +166,15 @@ public class Library {
 
         boolean found = false;
 
-        for (Book book: books) {
+        for (Resource resource: resources) {
 
-            if (book.id == id ){
-                    if (book.available) {
+            if (resource.id == id ){
+                    if (resource.available) {
                         found = true;
-                        book.changeStatus(book, "borrow");
+                        resource.changeStatus(resource, "borrow");
                     } else {
                         printMessage("The book is not available, choose another book");
-                        chooseBookToBorrow();
+                        chooseResourceToBorrow();
                     }
             }
         }
@@ -199,15 +191,15 @@ public class Library {
         }
         printMessage("You are returning "+ id);
 
-        for (Book book: books) {
+        for (Resource resource: resources) {
 
-            if (book.id == id ){
-                if (!book.available) {
-                    book.changeStatus(book, "return");
+            if (resource.id == id ){
+                if (!resource.available) {
+                    resource.changeStatus(resource, "return");
 
                 } else{
                     printMessage("This is not a valid book to return, please check your book ID");
-                    chooseBookToReturn();
+                    chooseResourceToReturn();
                 }
             } else {
                 printMessage("Select another option");

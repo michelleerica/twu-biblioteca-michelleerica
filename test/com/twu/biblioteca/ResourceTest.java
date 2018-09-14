@@ -4,7 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class ResourceTest {
-    private Resource resource = new Resource(1,"Huckleberry Finn", 1884, true);
+    private Resource resource = new Book(1,"Huckleberry Finn", 1884, true, "Mark Twain");
 
 
     @Test

@@ -11,16 +11,16 @@ public class Book extends Resource{
 
 
     }
-
-    public void changeStatus(Book book, String status){
-        if(status == "borrow") {
-            available = false;
-        } else if(status == "return"){
-            available = true;
-        }
-
-
-    }
+//
+//    public void changeStatus(Book book, String status){
+//        if(status == "borrow") {
+//            available = false;
+//        } else if(status == "return"){
+//            available = true;
+//        }
+//
+//
+//    }
 
 
 }
