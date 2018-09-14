@@ -13,4 +13,9 @@ public class UserTest {
         assertEquals("123-1234", user.id);
     }
 
+    public void loginTest(){
+        user.login();
+        assertTrue(user.loggedIn);
+    }
+
 }
