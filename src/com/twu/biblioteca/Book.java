@@ -1,20 +1,15 @@
 package com.twu.biblioteca;
 
-public class Book {
+public class Book extends Resource{
 
-    int id;
-    String title;
     String author;
-    Integer yearPublished;
-    Boolean available;
+
+    public Book(int num, String name, int year, boolean status, String authorName) {
+        super( num,  name,  year, status);
+
+        this.author = authorName;
 
 
-    public Book(int num, String bookName, String authorName, int year, boolean status) {
-        id = num;
-        title = bookName;
-        author = authorName;
-        yearPublished = year;
-        available = status;
     }
 
     public void changeStatus(Book book, String status){

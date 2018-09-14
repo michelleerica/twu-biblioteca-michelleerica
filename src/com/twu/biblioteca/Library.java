@@ -27,9 +27,9 @@ public class Library {
 
     private static void setUpLibrary(){
 
-        Book one = new Book(1,"Huckleberry Finn", "Mark Twain", 1884, true);
-        Book two = new Book(2,"Tom Sawyer", "Mark Twain", 1884, true);
-        Book three = new Book(3,"Little Women", "Louise May Alcott", 1868, false);
+        Book one = new Book(1,"Huckleberry Finn",  1884, true, "Mark Twain");
+        Book two = new Book(2,"Tom Sawyer",  1884, true, "Mark Twain");
+        Book three = new Book(3,"Little Women", 1868, false,"Louise May Alcott");
         books.add(one);
         books.add(two);
         books.add(three);
@@ -49,7 +49,7 @@ public class Library {
                 status = "Not available";
             }
 
-            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished + " | " + status;
+            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased + " | " + status;
             printMessage(info);
         }
     }
@@ -84,7 +84,7 @@ public class Library {
         ArrayList<Book> updatedBookList = getAvailableBookList();
 
         for (Book book: updatedBookList) {
-            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
+            String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased;
             printMessage(info);
         }
     }
@@ -93,7 +93,7 @@ public class Library {
 
         for (Book book: books) {
             if (!book.available) {
-                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearPublished;
+                String info = book.id + " | " + book.title + " | " + book.author + " | " + book.yearReleased;
                 printMessage(info);
             }
         }
