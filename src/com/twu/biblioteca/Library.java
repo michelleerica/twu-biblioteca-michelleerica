@@ -10,7 +10,11 @@ public abstract class Library {
     static ArrayList<Resource> resources = new ArrayList<Resource>();
     static ArrayList<Resource> availableResources = new ArrayList<Resource>();
 
+    static User user = new User("123-1234", "password");
+
     private static String welcomeMessage = "Welcome to Biblioteca";
+
+    private static String loginMessage = "Please log in";
 
     private static String menu = "Menu options: \n" +
             " L: View All \n" +
@@ -23,6 +27,7 @@ public abstract class Library {
     public static void main(String[] args) {
         printMessage(getWelcomeMessage());
         setUpLibrary();
+        loginInteraction("check in");
         run();
     }
 
@@ -156,7 +161,7 @@ public abstract class Library {
             checkout(id);
             printMessage("Thank you! Enjoy the book");
 
-        } else if(action == "checkin"){
+        } else if(action == "check in"){
             printMessage("You wish to return book #" + resourceID);
             checkIn(id);
             printMessage("Thank you for returning the book");
@@ -201,13 +206,59 @@ public abstract class Library {
 
                 } else{
                     printMessage("This is not a valid book to return, please check your book ID");
-                    chooseResourceToAction("checkin");
+                    chooseResourceToAction("check in");
                 }
             } else {
                 printMessage("Select another option");
             }
         }
 
+    }
+
+
+    public static String loginDisplay() {
+        loginInteraction("check in");
+        return loginMessage;
+    }
+
+    private static void loginInteraction(String action){
+        Scanner resourceSelector = new Scanner(System.in);
+
+        printMessage("Id: ");
+
+        String userId = resourceSelector.nextLine();
+
+        printMessage("Password: ");
+        String password = resourceSelector.nextLine();
+
+        printMessage(userId);
+        printMessage(user.id);
+        printMessage(password);
+        printMessage(user.password);
+
+
+        boolean success = checkMatch(userId, password);
+        System.out.println(success);
+        if (success){
+            printMessage("yay");
+            chooseResourceToAction(action);
+        }else{
+            printMessage("Please try again");
+            loginInteraction(action);
+        }
+
+
+    }
+
+    public static boolean checkMatch(String inputId, String inputPassword){
+        if (user.id == inputId && user.password == inputPassword) {
+            System.out.println("LOGGED IN");
+            user.loggedIn = true;
+        }else{
+            System.out.println("try again");
+            user.loggedIn = false;
+        }
+        return user.loggedIn;
     }
 
 }

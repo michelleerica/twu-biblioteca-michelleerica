@@ -12,7 +12,5 @@ public class User {
     }
 
 
-    public void login(){
-        loggedIn = true;
-    }
+
 }
