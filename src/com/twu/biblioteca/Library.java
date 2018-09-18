@@ -9,8 +9,7 @@ public abstract class Library {
 
     static ArrayList<Resource> resources = new ArrayList<Resource>();
     static ArrayList<Resource> availableResources = new ArrayList<Resource>();
-
-    static User user = new User("123-1234", "password");
+    private static User user = new User("123-1234", "password", "Michelle", "50 Carrington", "0409 564 123");
 
     private static String welcomeMessage = "Welcome to Biblioteca";
 
@@ -19,7 +18,8 @@ public abstract class Library {
     private static String menu = "Menu options: \n" +
             " L: View All \n" +
             " C: View available for checkout\n" +
-            " R: Return";
+            " R: Return\n" +
+            " U: See user details";
 
     static String optionSelected;
     private String[] args;
@@ -135,6 +135,8 @@ public abstract class Library {
             listNotAvailableResources();
             loginInteraction("checkin");
             chooseResourceToAction("checkin");
+        } else if (Objects.equals (optionSelected, "U")) {
+            loginInteraction("see personal details");
         } else {
             printMessage("Select a valid option");
         }
@@ -218,7 +220,6 @@ public abstract class Library {
 
 
     public static String loginDisplay() {
-//        loginInteraction("checkout");
         return loginMessage;
     }
 
@@ -236,7 +237,12 @@ public abstract class Library {
         System.out.println(success);
         if (success){
             printMessage("yay");
-            chooseResourceToAction(action);
+            if(action == "see personal details"){
+                printMessage(getUserDetails());
+                run();
+            }else {
+                chooseResourceToAction(action);
+            }
         }else{
             printMessage("Please try again");
             loginInteraction(action);
@@ -253,5 +259,20 @@ public abstract class Library {
 
         return user.loggedIn;
     }
+
+
+    public static String getUserDetails(){
+
+        String userDetails =
+                "User ID: " + user.id +
+                "\nName: " + user.name +
+                "\nAddress: " + user.address +
+                "\nPhone: " + user.phoneNumber;
+
+        return userDetails;
+    }
+
+
+
 
 }
