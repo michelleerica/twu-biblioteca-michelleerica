@@ -12,7 +12,7 @@ public class LibraryTest {
     @Before
     public void setUp() {
         library = new BookSection();
-        user = new User("123-1234", "password", "Michelle", "50 Carrington", "0409 564 123");
+        user = new User();
     }
 
     @Test

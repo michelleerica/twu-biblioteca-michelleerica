@@ -9,7 +9,8 @@ public abstract class Library {
 
     static ArrayList<Resource> resources = new ArrayList<Resource>();
     static ArrayList<Resource> availableResources = new ArrayList<Resource>();
-    private static User user = new User("123-1234", "password", "Michelle", "50 Carrington", "0409 564 123");
+
+    private static User user = new User();
 
     private static String welcomeMessage = "Welcome to Biblioteca";
 
@@ -25,6 +26,13 @@ public abstract class Library {
     private String[] args;
 
     public static void main(String[] args) {
+
+        user = new User();
+        user.setId("123-1234");
+        user.setName("Michelle");
+        user.setAddress("50 Carrington");
+        user.setPhoneNumber("0409 564 123");
+
         printMessage(getWelcomeMessage());
         setUpLibrary();
         run();
