@@ -37,22 +37,10 @@ public class LibraryTest {
     }
 
     @Test
-    public void loginInteractionTest(){
-        String username = "123-1234";
-        String password = "password";
-        assertEquals(username, user.id);
-        assertEquals(password, user.password);
-
-    }
-    @Test
     public void checkMatchTest(){
         assertTrue(library.checkMatch("123-1234", "password"));
         assertFalse(library.checkMatch("123-123]", "password"));
     }
 
-    @Test
-    public void checkInput(){
-        ass
-    }
 
 }

@@ -27,7 +27,6 @@ public abstract class Library {
     public static void main(String[] args) {
         printMessage(getWelcomeMessage());
         setUpLibrary();
-        loginInteraction("check in");
         run();
     }
 
@@ -129,10 +128,12 @@ public abstract class Library {
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
             listAvailableResources();
+            loginInteraction("checkout");
             chooseResourceToAction("checkout");
         } else if (Objects.equals (optionSelected, "R")) {
             printMessage("you selected R \nReturn book");
             listNotAvailableResources();
+            loginInteraction("checkin");
             chooseResourceToAction("checkin");
         } else {
             printMessage("Select a valid option");
@@ -154,10 +155,10 @@ public abstract class Library {
             menuInteractivity();
         }
 
-        printMessage("You wish to check out book #" + resourceID);
+        printMessage("You wish to checkout book #" + resourceID);
 
         if(action == "checkout") {
-            printMessage("You wish to check out book #" + resourceID);
+            printMessage("You wish to checkout book #" + resourceID);
             checkout(id);
             printMessage("Thank you! Enjoy the book");
 
@@ -217,25 +218,19 @@ public abstract class Library {
 
 
     public static String loginDisplay() {
-        loginInteraction("check in");
+//        loginInteraction("checkout");
         return loginMessage;
     }
 
-    private static void loginInteraction(String action){
-        Scanner resourceSelector = new Scanner(System.in);
+    public static void loginInteraction(String action){
 
+        Scanner loginInfo = new Scanner(System.in);
+        printMessage("You will need to log in to " + action + "\nPlease log in");
         printMessage("Id: ");
 
-        String userId = resourceSelector.nextLine();
-
+        String userId = loginInfo.next();
         printMessage("Password: ");
-        String password = resourceSelector.nextLine();
-
-        printMessage(userId);
-        printMessage(user.id);
-        printMessage(password);
-        printMessage(user.password);
-
+        String password = loginInfo.next();
 
         boolean success = checkMatch(userId, password);
         System.out.println(success);
@@ -246,18 +241,16 @@ public abstract class Library {
             printMessage("Please try again");
             loginInteraction(action);
         }
-
-
     }
 
     public static boolean checkMatch(String inputId, String inputPassword){
-        if (user.id == inputId && user.password == inputPassword) {
-            System.out.println("LOGGED IN");
+
+        if (Objects.equals(inputId, user.id) && Objects.equals(inputPassword, user.password)){
             user.loggedIn = true;
         }else{
-            System.out.println("try again");
             user.loggedIn = false;
         }
+
         return user.loggedIn;
     }
 

@@ -12,12 +12,5 @@ public class UserTest {
 
         assertEquals("123-1234", user.id);
     }
-//
-//    @Test
-//    public void loginTest(){
-//        user.login("123-1234", "password");
-//        assertTrue(user.loggedIn);
-//    }
-
 
 }
