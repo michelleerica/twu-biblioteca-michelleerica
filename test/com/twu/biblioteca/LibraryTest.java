@@ -30,10 +30,11 @@ public class LibraryTest {
     @Test
     public void optionListTest() {
         String message = "Menu options: \n" +
-                " L: View All Books\n" +
-                " C: View available for checkout\n" +
+                " VB: View All Books\n" +
+                " BB: View available for checkout\n" +
                 " R: Return\n" +
-                " M: View All Movies\n" +
+                " VM: View All Movies\n" +
+                " BM: View available for checkout\n" +
                 " U: See user details";
 
 

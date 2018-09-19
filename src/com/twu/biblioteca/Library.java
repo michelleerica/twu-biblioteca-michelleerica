@@ -8,6 +8,8 @@ import java.util.Objects;
 public abstract class Library {
 
     static ArrayList<Resource> resources = new ArrayList<Resource>();
+    static ArrayList<Resource> allBooks = new ArrayList<Resource>();
+    static ArrayList<Resource> allMovies = new ArrayList<Resource>();
     static ArrayList<Resource> availableResources = new ArrayList<Resource>();
     static ArrayList<Resource> availableBooks = new ArrayList<Resource>();
     static ArrayList<Resource> availableMovies = new ArrayList<Resource>();
@@ -20,14 +22,14 @@ public abstract class Library {
     private static String loginMessage = "Please log in";
 
     private static String menu = "Menu options: \n" +
-            " L: View All Books\n" +
-            " C: View available for checkout\n" +
+            " VB: View All Books\n" +
+            " BB: View available for checkout\n" +
             " R: Return\n" +
-            " M: View All Movies\n" +
+            " VM: View All Movies\n" +
+            " BM: View available for checkout\n" +
             " U: See user details";
 
     static String optionSelected;
-    private String[] args;
 
     public static void main(String[] args) {
         user.setId("123-1234");
@@ -35,8 +37,6 @@ public abstract class Library {
         user.setPassword("password");
         user.setAddress("50 Carrington");
         user.setPhoneNumber("0409 564 123");
-
-        printMessage(getUserDetails());
 
         printMessage(getWelcomeMessage());
         setUpLibrary();
@@ -86,16 +86,16 @@ public abstract class Library {
     public static ArrayList<Resource> getResourceList(String type){
         for (Resource r : resources) {
             if (r instanceof Book) {
-                availableBooks.add(r);
+                allBooks.add(r);
             } else if (r instanceof Movie) {
-                availableMovies.add(r);
+                allMovies.add(r);
             }
         }
 
-        if(type == "availableBooks"){
-            return availableBooks;
+        if(type == "allBooks"){
+            return allBooks;
         }else{
-            return availableMovies;
+            return allMovies;
         }
     }
 
@@ -150,14 +150,15 @@ public abstract class Library {
         }
     }
 
+
     public static void menuInteractivity(){
 
-        if (Objects.equals (optionSelected, "L")) {
-            printMessage("you selected L \nAll books at Biblioteca");
-            listAllResources("availableBooks");
+        if (Objects.equals (optionSelected, "VB")) {
+            printMessage("you selected VB \nAll books at Biblioteca");
+            listAllResources("allBooks");
             chooseResourceToAction("checkout");
-        } else if (Objects.equals (optionSelected, "C")) {
-            printMessage("you selected C \nBooks available");
+        } else if (Objects.equals (optionSelected, "BB")) {
+            printMessage("you selected BB \nBooks available");
             listAvailableResources();
             loginInteraction("checkout");
             chooseResourceToAction("checkout");
@@ -166,9 +167,14 @@ public abstract class Library {
             listNotAvailableResources();
             loginInteraction("checkin");
             chooseResourceToAction("checkin");
-        } else if (Objects.equals (optionSelected, "M")) {
-            printMessage("you selected M \nAll movies at Biblioteca");
-            listAllResources("availableMovies");
+        } else if (Objects.equals (optionSelected, "VM")) {
+            printMessage("you selected VM \nAll movies at Biblioteca");
+            listAllResources("allMovies");
+        } else if (Objects.equals (optionSelected, "BM")) {
+            printMessage("you selected BM \nMovies available");
+            listAvailableResources();
+            loginInteraction("checkout");
+            chooseResourceToAction("checkout");
         } else if (Objects.equals (optionSelected, "U")) {
             loginInteraction("see personal details");
         } else {

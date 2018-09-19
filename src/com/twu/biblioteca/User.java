@@ -15,10 +15,7 @@ public class User {
     }
 
     public void setId(String id){
-        System.out.println("ID SET");
         this.id = id;
-        System.out.println(this.id);
-
     }
     public void setPassword(String password){
         this.password = password;
@@ -34,8 +31,6 @@ public class User {
     }
 
     String getId(){
-        System.out.println("ID GET");
-        System.out.println(this.id);
         return id;
     }
 
