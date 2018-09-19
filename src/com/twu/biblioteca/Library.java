@@ -30,6 +30,7 @@ public abstract class Library {
         user = new User();
         user.setId("123-1234");
         user.setName("Michelle");
+        user.setPassword("password");
         user.setAddress("50 Carrington");
         user.setPhoneNumber("0409 564 123");
 
@@ -257,25 +258,25 @@ public abstract class Library {
         }
     }
 
-    public static boolean checkMatch(String inputId, String inputPassword){
+    public static boolean checkMatch(String inputId, String inputPassword) {
 
-        if (Objects.equals(inputId, user.id) && Objects.equals(inputPassword, user.password)){
-            user.loggedIn = true;
-        }else{
-            user.loggedIn = false;
+        if (Objects.equals(inputId, user.getId()) && Objects.equals(inputPassword, user.getPassword())) {
+            user.setStatus(true);
+        } else {
+            user.setStatus(false);
         }
+        return user.isLoggedIn();
 
-        return user.loggedIn;
     }
 
 
     public static String getUserDetails(){
 
         String userDetails =
-                "User ID: " + user.id +
-                "\nName: " + user.name +
-                "\nAddress: " + user.address +
-                "\nPhone: " + user.phoneNumber;
+                "User ID: " + user.getId() +
+                "\nName: " + user.getName() +
+                "\nAddress: " + user.getAddress() +
+                "\nPhone: " + user.getPhoneNumber();
 
         return userDetails;
     }

@@ -1,12 +1,12 @@
 package com.twu.biblioteca;
 
 public class User {
-    String id;
-    String password;
-    Boolean loggedIn;
-    String name;
-    String address;
-    String phoneNumber;
+    private String id;
+    private String password;
+    private Boolean loggedIn;
+    private String name;
+    private String address;
+    private String phoneNumber;
 
     public User() {
 
@@ -34,6 +34,28 @@ public class User {
         return this.id;
     }
 
+    String getPassword(){
+        return this.password;
+    }
 
+    String getName(){
+        return this.name;
+    }
 
+    String getAddress(){
+        return this.address;
+    }
+
+    String getPhoneNumber(){
+        return this.phoneNumber;
+    }
+
+    Boolean setStatus(boolean status){
+        this.loggedIn = status;
+        return this.loggedIn;
+    }
+
+    Boolean isLoggedIn(){
+        return this.loggedIn;
+    }
 }
