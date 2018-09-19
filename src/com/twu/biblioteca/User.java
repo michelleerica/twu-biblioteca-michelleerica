@@ -15,7 +15,10 @@ public class User {
     }
 
     public void setId(String id){
+        System.out.println("ID SET");
         this.id = id;
+        System.out.println(this.id);
+
     }
     public void setPassword(String password){
         this.password = password;
@@ -31,7 +34,9 @@ public class User {
     }
 
     String getId(){
-        return this.id;
+        System.out.println("ID GET");
+        System.out.println(this.id);
+        return id;
     }
 
     String getPassword(){
@@ -52,6 +57,7 @@ public class User {
 
     Boolean setStatus(boolean status){
         this.loggedIn = status;
+        System.out.print(this.loggedIn);
         return this.loggedIn;
     }
 

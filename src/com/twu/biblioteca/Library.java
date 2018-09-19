@@ -9,6 +9,9 @@ public abstract class Library {
 
     static ArrayList<Resource> resources = new ArrayList<Resource>();
     static ArrayList<Resource> availableResources = new ArrayList<Resource>();
+    static ArrayList<Resource> availableBooks = new ArrayList<Resource>();
+    static ArrayList<Resource> availableMovies = new ArrayList<Resource>();
+
 
     private static User user = new User();
 
@@ -17,22 +20,23 @@ public abstract class Library {
     private static String loginMessage = "Please log in";
 
     private static String menu = "Menu options: \n" +
-            " L: View All \n" +
+            " L: View All Books\n" +
             " C: View available for checkout\n" +
             " R: Return\n" +
+            " M: View All Movies\n" +
             " U: See user details";
 
     static String optionSelected;
     private String[] args;
 
     public static void main(String[] args) {
-
-        user = new User();
         user.setId("123-1234");
         user.setName("Michelle");
         user.setPassword("password");
         user.setAddress("50 Carrington");
         user.setPhoneNumber("0409 564 123");
+
+        printMessage(getUserDetails());
 
         printMessage(getWelcomeMessage());
         setUpLibrary();
@@ -48,7 +52,13 @@ public abstract class Library {
         resources.add(one);
         resources.add(two);
         resources.add(three);
+
+        Movie m1 = new Movie(1,"Black Swan",  2010, true, "Darren Aronofsky", 8);
+        Movie m2 = new Movie(2,"To All The Boys I've Loved Before",  2018, true, "Susan Johnson", 8);
+        resources.add(m1);
+        resources.add(m2);
     }
+
 
     public static void printMessage(String message) {
         System.out.println(message);
@@ -73,8 +83,20 @@ public abstract class Library {
         return welcomeMessage;
     }
 
-    public static ArrayList<Resource> getResourceList(){
-        return resources;
+    public static ArrayList<Resource> getResourceList(String type){
+        for (Resource r : resources) {
+            if (r instanceof Book) {
+                availableBooks.add(r);
+            } else if (r instanceof Movie) {
+                availableMovies.add(r);
+            }
+        }
+
+        if(type == "availableBooks"){
+            return availableBooks;
+        }else{
+            return availableMovies;
+        }
     }
 
     public static ArrayList<Resource> getAvailableResourceList(){
@@ -90,8 +112,8 @@ public abstract class Library {
         return menu;
     }
 
-    public static void listAllResources(){
-        printList(getResourceList());
+    public static void listAllResources(String type){
+        printList(getResourceList(type));
     }
 
     public static void listAvailableResources(){
@@ -132,7 +154,7 @@ public abstract class Library {
 
         if (Objects.equals (optionSelected, "L")) {
             printMessage("you selected L \nAll books at Biblioteca");
-            listAllResources();
+            listAllResources("availableBooks");
             chooseResourceToAction("checkout");
         } else if (Objects.equals (optionSelected, "C")) {
             printMessage("you selected C \nBooks available");
@@ -144,6 +166,9 @@ public abstract class Library {
             listNotAvailableResources();
             loginInteraction("checkin");
             chooseResourceToAction("checkin");
+        } else if (Objects.equals (optionSelected, "M")) {
+            printMessage("you selected M \nAll movies at Biblioteca");
+            listAllResources("availableMovies");
         } else if (Objects.equals (optionSelected, "U")) {
             loginInteraction("see personal details");
         } else {
@@ -259,6 +284,14 @@ public abstract class Library {
     }
 
     public static boolean checkMatch(String inputId, String inputPassword) {
+        System.out.println("inputId");
+
+        System.out.println(inputId);
+        System.out.println(user.getId());
+        System.out.println("passwordINPUT");
+
+        System.out.println(inputPassword);
+        System.out.println(user.getPassword());
 
         if (Objects.equals(inputId, user.getId()) && Objects.equals(inputPassword, user.getPassword())) {
             user.setStatus(true);
