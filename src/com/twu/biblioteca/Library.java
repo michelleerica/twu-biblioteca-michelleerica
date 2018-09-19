@@ -40,6 +40,9 @@ public abstract class Library {
 
         printMessage(getWelcomeMessage());
         setUpLibrary();
+        getResourceList("book");
+        getResourceList("movie");
+
         run();
     }
 
@@ -54,9 +57,10 @@ public abstract class Library {
         resources.add(three);
 
         Movie m1 = new Movie(1,"Black Swan",  2010, true, "Darren Aronofsky", 8);
-        Movie m2 = new Movie(2,"To All The Boys I've Loved Before",  2018, true, "Susan Johnson", 8);
+        Movie m2 = new Movie(2,"To All The Boys I've Loved Before",  2018, false, "Susan Johnson", 8);
         resources.add(m1);
         resources.add(m2);
+
     }
 
 
@@ -99,13 +103,22 @@ public abstract class Library {
         }
     }
 
-    public static ArrayList<Resource> getAvailableResourceList(){
-        for (Resource resource: resources) {
-            if (resource.available ){
-                availableResources.add(resource);
+    public static ArrayList<Resource> getAvailableResourceList(String type) {
+
+        if (Objects.equals(type, "book")) {
+            for (Resource book : allBooks) {
+                if (book.available) {
+                    availableBooks.add(book);
+                }
             }
+            return availableBooks;
+        } else {
+            for (Resource movie : allMovies) {
+                if (movie.available) {
+                    availableMovies.add(movie);
+                }
+            } return availableMovies;
         }
-        return availableResources;
     }
 
     public static String getMenu() {
@@ -116,9 +129,9 @@ public abstract class Library {
         printList(getResourceList(type));
     }
 
-    public static void listAvailableResources(){
-        System.out.println("LIST OF AVAILABLE BOOKS");
-        ArrayList<Resource> updatedResourceList = getAvailableResourceList();
+    public static void listAvailableResources(String type){
+        System.out.println("List of available " + type + "s");
+        ArrayList<Resource> updatedResourceList = getAvailableResourceList(type);
 
         for (Resource resource: updatedResourceList) {
             String info = resource.id + " | " + resource.title + " | " + resource.yearReleased;
@@ -156,25 +169,26 @@ public abstract class Library {
         if (Objects.equals (optionSelected, "VB")) {
             printMessage("you selected VB \nAll books at Biblioteca");
             listAllResources("allBooks");
-            chooseResourceToAction("checkout");
+            chooseResourceToAction("checkout", "book");
         } else if (Objects.equals (optionSelected, "BB")) {
             printMessage("you selected BB \nBooks available");
-            listAvailableResources();
+            listAvailableResources("book");
             loginInteraction("checkout");
-            chooseResourceToAction("checkout");
+            chooseResourceToAction("checkout", "book");
         } else if (Objects.equals (optionSelected, "R")) {
             printMessage("you selected R \nReturn book");
             listNotAvailableResources();
             loginInteraction("checkin");
-            chooseResourceToAction("checkin");
+            chooseResourceToAction("checkin", "book");
         } else if (Objects.equals (optionSelected, "VM")) {
             printMessage("you selected VM \nAll movies at Biblioteca");
             listAllResources("allMovies");
+            chooseResourceToAction("checkout", "movie");
         } else if (Objects.equals (optionSelected, "BM")) {
             printMessage("you selected BM \nMovies available");
-            listAvailableResources();
+            listAvailableResources("movie");
             loginInteraction("checkout");
-            chooseResourceToAction("checkout");
+            chooseResourceToAction("checkout", "movie");
         } else if (Objects.equals (optionSelected, "U")) {
             loginInteraction("see personal details");
         } else {
@@ -183,7 +197,7 @@ public abstract class Library {
         run();
     }
 
-    public static void chooseResourceToAction(String action){
+    public static void chooseResourceToAction(String action, String type){
         Scanner resourceSelector = new Scanner(System.in);
 
         printMessage("Which book would you like to " + action + " (provide # e.g. 1)?");
@@ -197,17 +211,17 @@ public abstract class Library {
             menuInteractivity();
         }
 
-        printMessage("You wish to checkout book #" + resourceID);
+        printMessage("You wish to checkout " + type + "#" + resourceID);
 
         if(action == "checkout") {
-            printMessage("You wish to checkout book #" + resourceID);
+            printMessage("You wish to checkout " + type + "#" + resourceID);
             checkout(id);
-            printMessage("Thank you! Enjoy the book");
+            printMessage("Thank you! Enjoy the" + type);
 
         } else if(action == "check in"){
-            printMessage("You wish to return book #" + resourceID);
+            printMessage("You wish to return" + type + "#" + resourceID);
             checkIn(id);
-            printMessage("Thank you for returning the book");
+            printMessage("Thank you for returning the " + type);
         }
         run();
 
@@ -227,7 +241,7 @@ public abstract class Library {
                         resource.changeStatus(resource, "borrow");
                     } else {
                         printMessage("The book is not available, choose another book");
-                        chooseResourceToAction("checkout");
+                        chooseResourceToAction("checkout", "book");
                     }
             }
         }
@@ -249,7 +263,7 @@ public abstract class Library {
 
                 } else{
                     printMessage("This is not a valid book to return, please check your book ID");
-                    chooseResourceToAction("check in");
+                    chooseResourceToAction("check in", "book");
                 }
             } else {
                 printMessage("Select another option");
@@ -281,7 +295,7 @@ public abstract class Library {
                 printMessage(getUserDetails());
                 run();
             }else {
-                chooseResourceToAction(action);
+                chooseResourceToAction(action, "book");
             }
         }else{
             printMessage("Please try again");
