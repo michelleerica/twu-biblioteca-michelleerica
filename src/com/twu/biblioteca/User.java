@@ -52,7 +52,6 @@ public class User {
 
     Boolean setStatus(boolean status){
         this.loggedIn = status;
-        System.out.print(this.loggedIn);
         return this.loggedIn;
     }
 

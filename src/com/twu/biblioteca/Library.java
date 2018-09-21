@@ -40,8 +40,7 @@ public abstract class Library {
 
         printMessage(getWelcomeMessage());
         setUpLibrary();
-        getResourceList("book");
-        getResourceList("movie");
+
 
         run();
     }
@@ -164,13 +163,16 @@ public abstract class Library {
     }
 
 
-    public static void menuInteractivity(){
 
-        if (Objects.equals (optionSelected, "VB")) {
+    public static void menuInteractivity() {
+        if(Objects.equals (optionSelected, "Q")){
+            printMessage("QUIT");
+        } else if (Objects.equals (optionSelected, "VB")) {
             printMessage("you selected VB \nAll books at Biblioteca");
             listAllResources("allBooks");
             chooseResourceToAction("checkout", "book");
         } else if (Objects.equals (optionSelected, "BB")) {
+            getResourceList("book");
             printMessage("you selected BB \nBooks available");
             listAvailableResources("book");
             loginInteraction("checkout");
@@ -185,6 +187,7 @@ public abstract class Library {
             listAllResources("allMovies");
             chooseResourceToAction("checkout", "movie");
         } else if (Objects.equals (optionSelected, "BM")) {
+            getResourceList("movie");
             printMessage("you selected BM \nMovies available");
             listAvailableResources("movie");
             loginInteraction("checkout");
@@ -200,7 +203,7 @@ public abstract class Library {
     public static void chooseResourceToAction(String action, String type){
         Scanner resourceSelector = new Scanner(System.in);
 
-        printMessage("Which book would you like to " + action + " (provide # e.g. 1)?");
+        printMessage("Which " + type + " would you like to " + action + " (provide # e.g. 1)?");
 
         String resourceID = resourceSelector.nextLine();
 
@@ -211,20 +214,17 @@ public abstract class Library {
             menuInteractivity();
         }
 
-        printMessage("You wish to checkout " + type + "#" + resourceID);
-
         if(action == "checkout") {
-            printMessage("You wish to checkout " + type + "#" + resourceID);
+            printMessage("You wish to " + action + type + "#" + resourceID);
             checkout(id);
-            printMessage("Thank you! Enjoy the" + type);
+            printMessage("Thank you! Enjoy the " + type);
 
         } else if(action == "check in"){
-            printMessage("You wish to return" + type + "#" + resourceID);
+            printMessage("You wish to " + action + type + "#" + resourceID);
             checkIn(id);
             printMessage("Thank you for returning the " + type);
         }
         run();
-
     }
 
     public static void checkout(int id){
@@ -248,7 +248,6 @@ public abstract class Library {
         if(!found){
             printMessage("Select another option");
         }
-
     }
 
     public static void checkIn(int id){
@@ -269,7 +268,6 @@ public abstract class Library {
                 printMessage("Select another option");
             }
         }
-
     }
 
 
@@ -288,9 +286,8 @@ public abstract class Library {
         String password = loginInfo.next();
 
         boolean success = checkMatch(userId, password);
-        System.out.println(success);
         if (success){
-            printMessage("yay");
+            printMessage("Login successful");
             if(action == "see personal details"){
                 printMessage(getUserDetails());
                 run();
@@ -304,14 +301,6 @@ public abstract class Library {
     }
 
     public static boolean checkMatch(String inputId, String inputPassword) {
-        System.out.println("inputId");
-
-        System.out.println(inputId);
-        System.out.println(user.getId());
-        System.out.println("passwordINPUT");
-
-        System.out.println(inputPassword);
-        System.out.println(user.getPassword());
 
         if (Objects.equals(inputId, user.getId()) && Objects.equals(inputPassword, user.getPassword())) {
             user.setStatus(true);
