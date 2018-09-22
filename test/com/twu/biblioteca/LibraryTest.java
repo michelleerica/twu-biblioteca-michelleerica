@@ -3,7 +3,13 @@ package com.twu.biblioteca;
 import org.junit.Test;
 import org.junit.Before;
 
+import java.util.ArrayList;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.*;
+
 import static org.junit.Assert.*;
+
 
 
 public class LibraryTest {
@@ -21,10 +27,9 @@ public class LibraryTest {
         user.setPhoneNumber("0409 564 123");
     }
 
-
     @Test
     public void welcomeMessageTest() {
-        assertEquals("Welcome to Biblioteca", library.getWelcomeMessage());
+        assertThat("Welcome to Biblioteca", is(equalTo(library.getWelcomeMessage())));
     }
 
     @Test
@@ -37,7 +42,6 @@ public class LibraryTest {
                 " BM: View available for checkout\n" +
                 " U: See user details";
 
-
         assertEquals(message, library.getMenu());
     }
 
@@ -45,6 +49,19 @@ public class LibraryTest {
     public void loginDisplayTest() {
         String message = "Please log in";
         assertEquals(message, library.loginDisplay());
+    }
+
+    @Test
+    public void listAvailableResourcesTest(){
+        library.getResourceList("book");
+        assertThat(true, is(equalTo(library.listAvailableResources("book"))));
+    }
+
+    @Test
+    public void menuInteractivityTest(){
+        library.optionSelected = "Q";
+        assertThat("Q", is(equalTo(library.menuInteractivity())));
+
     }
 
 //    @Test

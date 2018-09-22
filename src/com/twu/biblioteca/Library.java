@@ -14,6 +14,7 @@ public abstract class Library {
     static ArrayList<Resource> availableBooks = new ArrayList<Resource>();
     static ArrayList<Resource> availableMovies = new ArrayList<Resource>();
 
+    public static String optionSelected = "";
     private static User user = new User();
 
     private static String welcomeMessage = "Welcome to Biblioteca";
@@ -27,8 +28,6 @@ public abstract class Library {
             " VM: View All Movies\n" +
             " BM: View available for checkout\n" +
             " U: See user details";
-
-    static String optionSelected;
 
     public static void main(String[] args) {
         user.setId("123-1234");
@@ -91,8 +90,9 @@ public abstract class Library {
                 allMovies.add(r);
             }
         }
+        String ALL_BOOKS = "allBooks";
 
-        if(type == "allBooks"){
+        if(type.equals(ALL_BOOKS)){
             return allBooks;
         }else{
             return allMovies;
@@ -125,15 +125,15 @@ public abstract class Library {
         printList(getResourceList(type));
     }
 
-    public static void listAvailableResources(String type){
+    public static boolean listAvailableResources(String type){
         System.out.println("List of available " + type + "s");
         ArrayList<Resource> updatedResourceList = getAvailableResourceList(type);
 
-        for (Resource resource: updatedResourceList) {
-            String info = resource.id + " | " + resource.title + " | " + resource.yearReleased;
-            printMessage(info);
-        }
+        printList(updatedResourceList);
+
+        return true;
     }
+
 
     public static void listNotAvailableResources(){
 
@@ -145,20 +145,16 @@ public abstract class Library {
         }
     }
 
-    public static void run() {
+    public static boolean run() {
         Scanner userInput = new Scanner(System.in);
         printMessage(getMenu());
 
         printMessage("Select an option: ");
 
         optionSelected = userInput.nextLine();
-        if(optionSelected == "Q"){
-            printMessage("QUIT");
-            System.exit(0);
 
-        } else {
-            menuInteractivity();
-        }
+        menuInteractivity();
+        return true;
     }
 
     public static void checkOutSequence(String action, String type){
@@ -170,7 +166,7 @@ public abstract class Library {
         chooseResourceToAction("checkout", type);
     }
 
-    public static void menuInteractivity() {
+    public static String menuInteractivity() {
         if(Objects.equals (optionSelected, "Q")){
             printMessage("QUIT");
             System.exit(0);
@@ -197,6 +193,7 @@ public abstract class Library {
             printMessage("Select a valid option");
         }
         run();
+        return optionSelected;
     }
 
     public static void chooseResourceToAction(String action, String type){
@@ -232,7 +229,7 @@ public abstract class Library {
 
         boolean found = false;
 
-        for (Resource resource: resources) {
+        for (Resource resource: resources) { //todo limit loop to specific resource type (book/movie)
 
             if (resource.id == id ){
                     if (resource.available) {
@@ -246,6 +243,7 @@ public abstract class Library {
         }
         if(!found){
             printMessage("Select another option");
+
         }
     }
 
