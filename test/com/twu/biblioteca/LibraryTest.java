@@ -64,15 +64,18 @@ public class LibraryTest {
 
     }
 
-//    @Test
-//    public void checkMatchTest() {
-////        System.out.println(user.isLoggedIn());
-////        library.checkMatch("123-1234", "password");
-////        System.out.println(user.isLoggedIn());
-//
-////        assertTrue(library.checkMatch("123-1234", "password"));
+    @Test
+
+    public void actionResourceTest(){
+        boolean borrow = library.actionResource("checkout", "book", 1);
+        assertThat(true, is(equalTo(borrow)));
+    }
+
+    @Test
+    public void checkMatchTest() {
+        assertThat(true, is(equalTo(library.checkMatch("123-1234", "password"))));
 //        assertFalse(library.checkMatch("123-123]", "password"));
-//    }
+    }
 //
 //    @Test
 //    public void getUserDetailsTest(){

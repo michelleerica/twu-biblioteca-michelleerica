@@ -163,7 +163,7 @@ public abstract class Library {
         System.out.print(type);
         listAvailableResources(type);
         loginInteraction("checkout");
-        chooseResourceToAction("checkout", type);
+        selectResource("checkout", type);
     }
 
     public static String menuInteractivity() {
@@ -173,18 +173,18 @@ public abstract class Library {
         } else if (Objects.equals (optionSelected, "VB")) {
             printMessage("you selected VB \nAll books at Biblioteca");
             listAllResources("allBooks");
-            chooseResourceToAction("checkout", "book");
+            selectResource("checkout", "book");
         } else if (Objects.equals (optionSelected, "BB")) {
             checkOutSequence("BB", "book");
         } else if (Objects.equals (optionSelected, "R")) {
             printMessage("you selected R \nReturn book");
             listNotAvailableResources();
             loginInteraction("checkin");
-            chooseResourceToAction("checkin", "book");
+            selectResource("checkin", "book");
         } else if (Objects.equals (optionSelected, "VM")) {
             printMessage("you selected VM \nAll movies at Biblioteca");
             listAllResources("allMovies");
-            chooseResourceToAction("checkout", "movie");
+            selectResource("checkout", "movie");
         } else if (Objects.equals (optionSelected, "BM")) {
             checkOutSequence("BM", "movie");
         } else if (Objects.equals (optionSelected, "U")) {
@@ -196,7 +196,7 @@ public abstract class Library {
         return optionSelected;
     }
 
-    public static void chooseResourceToAction(String action, String type){
+    public static void selectResource(String action, String type){
         Scanner resourceSelector = new Scanner(System.in);
 
         printMessage("Which " + type + " would you like to " + action + " (provide # e.g. 1)?");
@@ -210,17 +210,30 @@ public abstract class Library {
             menuInteractivity();
         }
 
+        actionResource(action, type, id);
+        run();
+
+
+    }
+
+    public static boolean actionResource(String action, String type, int resourceID){
+
+
         if(action == "checkout") {
-            printMessage("You wish to " + action + type + "#" + resourceID);
-            checkout(id, type);
+            printMessage("You wish to " + action + " " + type + "#" + resourceID);
+            checkout(resourceID, type);
             printMessage("Thank you! Enjoy the " + type);
+            return true;
 
         } else if(action == "check in"){
             printMessage("You wish to " + action + " " + type + "#" + resourceID);
-            checkout(id, type);
+            checkout(resourceID, type);
             printMessage("Thank you for returning the " + type);
+            return true;
+        } else {
+            return false;
         }
-        run();
+
     }
 
     public static void checkout(int id, String type){
@@ -237,7 +250,7 @@ public abstract class Library {
                         resource.changeStatus(resource, "borrow");
                     } else {
                         printMessage("The item is not available, choose again");
-                        chooseResourceToAction("checkout", type);
+                        selectResource("checkout", type);
                     }
             }
         }
@@ -268,7 +281,7 @@ public abstract class Library {
                 printMessage(getUserDetails());
                 run();
             }else {
-                chooseResourceToAction(action, "book");
+                selectResource(action, "book");
             }
         }else{
             printMessage("Please try again");
@@ -277,6 +290,8 @@ public abstract class Library {
     }
 
     public static boolean checkMatch(String inputId, String inputPassword) {
+        System.out.print(user.getId());
+        System.out.print(user.getPassword());
 
         if (Objects.equals(inputId, user.getId()) && Objects.equals(inputPassword, user.getPassword())) {
             user.setStatus(true);
